@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>역시 자스가 최고야</title>
+    <style>
+        div.slide_box-inner{
+            width: 100px;
+            height: 100%;
+            justify-items: center;
+            align-items: center;
+            text-align: center;
+            }
+    
+    </style>
+
+</head>
+<body>
+
+
+    <div class="slide" style="position:relative;width:100px; height:50px; overflow-x: hidden;">
+        <div class="slide_box" style="width: auto; height: 50px; position: absolute; display: flex; transition: 1s all;" >
+            <div class="slide_box-inner"><p>a</p></div>
+            <div class="slide_box-inner"><p>b</p></div>
+            <div class="slide_box-inner"><p>c</p></div>
+            <div class="slide_box-inner"><p>d</p></div>
+        </div>
+        <div class ="prev_btn" onclick="left()" style="position: absolute; left:0; top: 50%;"><</div>
+        <div class ="next_btn" onclick="right()" style="position: absolute;right: 0; top: 50%;">></div>
+    </div>
+    <script>
+        const slide = document.querySelector(".slide");
+        const slide_box = document.querySelector(".slide_box");
+        const slide_box_inner = document.querySelectorAll(".slide_box-inner");
+        const width = slide_box_inner.length;
+        slide_box.style.width = slide_box_inner.length * 100+"%";
+        let index = 0;
+        const prev_btn = document.querySelector(".prev_btn");
+        const next_btn = document.querySelector(".next_btn");
+
+        function left(){
+  
+            console.log(index);
+            if(index < 1){
+                index = width-1;
+                
+                slide_box.style.transform = "translateX("+ 100 * -index+"px)";
+            }else{
+                index--
+                slide_box.style.transform = "translateX("+ 100 * -index+"px)";                
+            }
+
+        }
+        function right(){
+
+            console.log(index);
+            if(index >= width-1){
+                index = 0;
+                slide_box.style.transform = "translateX("+ 100 * -index+"px)";
+                
+            }else{
+                index++;
+                slide_box.style.transform = "translateX("+ 100 * -index+"px)";
+                
+            }
+
+        }
+        
+    </script>
+</body>
+</html>

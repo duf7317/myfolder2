@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>응애</title>
+<style>
+    .dd{
+        width: 500px;
+        overflow: hidden;
+        position: relative;
+        height:200px;
+    }
+    .ss_wrap{
+        position: absolute;
+        display: flex;
+        left: 0;
+        top: 0;
+        transition: all 0.5s;
+    }
+    .ss{
+        width: 500px;
+        height: 200px;
+        
+    }
+    .blue{
+        background: blue;
+    }
+    .red{
+        background: red;
+    }
+    .yellow{
+        background: yellow;
+    }
+    .prev_btn{
+        position: absolute;
+        width: 30px;
+        height: 20px;
+        left: 30px;
+        top: 100px;
+        z-index: 100;
+    }
+    .next_btn{
+        position: absolute;
+        width: 30px;
+        height: 20px;
+        right: 30px;
+        top: 100px;
+        z-index: 100;
+    }
+    .dd{
+        position: relative;
+    }
+    body{
+        background: black;
+    }
+    .light{
+        background: white;
+    }
+    .green{
+        background: green;
+    }
+    .blueviole{
+        background: blueviolet;
+    }
+    .orange{
+        background: orange;
+    }
+    .purple{
+        background: purple;
+    }
+</style>
+<script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+</head>
+<body class="light">
+    
+
+
+
+    <div class="dd">
+        <button class="prev_btn"><</button>
+        <div class="ss_wrap">
+            
+            <div class="ss blue"></div>
+            <div class="ss red"></div>
+            <div class="ss yellow"></div>
+            <div class="ss green"></div>
+            <div class="ss blueviole"></div>
+            <div class="ss orange"></div>
+            <div class="ss purple"></div>
+            
+        </div>
+        <button class="next_btn">></button>
+    </div>
+
+
+
+
+    <div class="dark_light">
+        <button>다크모드</button>
+    </div>
+
+    <script> 
+        let ss = $(".ss");
+        let ss_size = $(".ss").css("width");
+        let ss_wrap = $(".ss_wrap");
+        const prev_btn = $(".prev_btn");
+        const next_btn = $(".next_btn");
+        ss_wrap.css("width", ss_size.replace("px", "") * ss.length + "px");
+    
+        let index = 0;
+
+        function slide_load(){
+            ss_wrap.css("transform", `translateX(-${ss_size.replace("px","") * index + "px"})`)
+        }
+        next_btn.on("click", function(e){
+            e.preventDefault();
+            
+            if(index < ss.length -1){
+            index++;
+            slide_load();
+            }else{
+                index = 0;
+                slide_load();
+            }
+        })
+        prev_btn.on("click", function(e){
+            e.preventDefault();
+
+            if(index > 0){
+                index --;
+                slide_load();
+            }else{
+                index = ss.length-1;
+                slide_load();
+            }
+        });
+
+        const dark_light = $(".dark_light button");
+        
+        dark_light.on("click",function(){
+            $("body").toggleClass("light");
+            if($("body").hasClass("light") != true){
+                dark_light.html("다크모드");
+            }else{
+                dark_light.html("라이트모드");
+            }
+        })
+
+
+
+      
+
+
+        // prev_btn.on("click",function(e){
+        //     e.preventDefault();
+
+        //     if(index > 0){
+        //         ss_wrap.css("transform", `translateX('-${ss_szie.replace("px","") * index + "px"}')`);
+        //         index--
+        //     }else{
+        //         ss_wrap.css("transform", `translateX("${ss.length}")` );
+        //         index = ss.length;
+        //     }
+        // })
+        // ss_wrap.on("click",function(){
+            
+        //     if(index < ss.length ){
+        //     ss_wrap.css("transform",`translateX(-${ss_size.replace("px", "") * index + "px"})`);
+        //     index++
+        //     }else{
+        //         ss_wrap.css("transform",`translateX(0px)`);
+        //         index = 1;
+        //     }
+        //     console.log(index);
+            
+            
+        // })
+        // 뎃?
+
+
+         
+    </script>
+</body>
+</html>
